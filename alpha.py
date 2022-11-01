@@ -1,5 +1,5 @@
 from pyrogram import Client, filters, idle
-from db import add, pop
+from db import add, pop, get_users
 import os
 
 ID = os.environ["API_ID"]
@@ -37,10 +37,34 @@ async def addtodb(_, m):
             a += 1
             z += 1
             if a == c:
-                await ok.edit("PROGRESS : {z}")
+                await ok.edit(f"PROGRESS : {z}")
                 a = 0
     except Exception as e:
         await ok.edit(e)
         pass
 
-            
+@yashu.on_message(filters.command("scrapdb") & filters.user(SUDOS))
+async def scrapdb(_, m):
+    USERS = await get_users()
+    if not USERS:
+        return await m.reply("DATABSE IS EMPTY !!")  
+    a = 0
+    b = 0
+    c = 0
+    ok = await m.reply(f"ADDING FROM DATABASE, {len(USERS)} FOUND") 
+    for x in USERS:
+        try:
+            await _.add_chat_member(m.chat.id, x)
+            a += 1
+            await ok.edit(f"ADDED : {a}\n\nFAILED : {b}")
+            time.sleep(2)
+        except:
+            b += 1
+            pass
+        if a == 100:
+            break
+
+yashu.start()
+print("YashuAlpha Op")
+idle()
+   
