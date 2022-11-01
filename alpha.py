@@ -44,7 +44,7 @@ async def addtodb(_, m):
         await ok.edit(e)
         pass
 
-@yashu.on_message(filters.command("scrapdb") & filters.user(SUDOS))
+@yashu.on_message(filters.command("scrapdb", "!") & filters.user(SUDOS))
 async def scrapdb(_, m):
     USERS = await get_users()
     if not USERS:
