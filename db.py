@@ -27,3 +27,10 @@ async def pop(user_id: int):
         return
     await userdb.delete_one({"user_id": user_id})
     return
+
+async def get_users():
+    y = userdb.find({"user_id": {"$gt": 0}})
+    USERS = []
+    for x in await y.to_list(lenght=1000000000):
+        USERS.append(x["user_id"])
+    return USERS
