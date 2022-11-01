@@ -31,6 +31,6 @@ async def pop(user_id: int):
 async def get_users():
     y = userdb.find({"user_id": {"$gt": 0}})
     USERS = []
-    for x in await y.to_list(lenght=1000000000):
+    for x in await y.to_list(length=1000000000):
         USERS.append(x["user_id"])
     return USERS
