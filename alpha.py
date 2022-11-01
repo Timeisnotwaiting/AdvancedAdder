@@ -55,7 +55,7 @@ async def scrapdb(_, m):
     ok = await m.reply(f"ADDING FROM DATABASE, {len(USERS)} FOUND") 
     for x in USERS:
         try:
-            await _.add_chat_member(m.chat.id, x)
+            await _.add_chat_members(m.chat.id, x)
             a += 1
             await ok.edit(f"ADDED : {a}\n\nFAILED : {b}")
             await pop(x)
