@@ -60,7 +60,8 @@ async def scrapdb(_, m):
             await ok.edit(f"ADDED : {a}\n\nFAILED : {b}")
             await pop(x)
             time.sleep(2)
-        except:
+        except Exception as e:
+            print(e)
             b += 1
             pass
         if a == 100:
