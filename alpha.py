@@ -1,6 +1,7 @@
 from pyrogram import Client, filters, idle
 from db import add, pop, get_users
 import os
+import time
 
 ID = os.environ["API_ID"]
 HASH = os.environ["API_HASH"]
