@@ -26,7 +26,7 @@ async def addtodb(_, m):
     try:
         async for v in _.get_chat_members(id):
             if v.user.is_bot or v.user.is_deleted:
-                return
+                pass
             N.append(v.user.id)
         await ok.edit(f"{len(N)} IDS FOUND !")
         a = 0
