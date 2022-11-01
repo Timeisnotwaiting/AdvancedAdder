@@ -58,6 +58,7 @@ async def scrapdb(_, m):
             await _.add_chat_member(m.chat.id, x)
             a += 1
             await ok.edit(f"ADDED : {a}\n\nFAILED : {b}")
+            await pop(x)
             time.sleep(2)
         except:
             b += 1
