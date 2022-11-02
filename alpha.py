@@ -1,5 +1,5 @@
 from pyrogram import Client, filters, idle
-from db import add, pop, get_users
+from db import add, pop, get_users, cleandb
 import os
 import time
 
@@ -68,6 +68,15 @@ async def scrapdb(_, m):
             pass
         if a == 100:
             break
+
+@yashu.on_message(filters.command("cleandb", "!") & filters.user(SUDOS))
+async def db_cleaner(_, m):
+    try:
+        ok = await m.reply("CLEARING DATABASE...!")
+        await cleandb()
+        await ok.edit("DATABASE CLEARED !")
+    except Exception as e:
+        return await m.reply(e)
 
 yashu.start()
 print("YashuAlpha Op")
