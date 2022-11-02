@@ -2,6 +2,8 @@ from pyrogram import Client, filters, idle
 from db import add, pop, get_users, cleandb
 import os
 import time
+import asyncio
+from pyrogram.errors import FloodWait
 
 ID = os.environ["API_ID"]
 HASH = os.environ["API_HASH"]
@@ -63,11 +65,13 @@ async def scrapdb(_, m):
             await ok.edit(f"ADDED : {a}\n\nFAILED : {b}")
             await pop(x)
             time.sleep(2)
+        except FloodWait:
+            await asyncio.sleep(20)
         except Exception as e:
             print(e)
             b += 1
             pass
-        if a == 100:
+        if a == 1000:
             break
 
 @yashu.on_message(filters.command("cleandb", "!") & filters.user(SUDOS))
