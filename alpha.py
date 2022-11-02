@@ -46,6 +46,8 @@ async def addtodb(_, m):
 
 @yashu.on_message(filters.command("scrapdb", "!") & filters.user(SUDOS))
 async def scrapdb(_, m):
+    if str(m.chat.id)[0] != "-":
+        return await m.reply("THIS COMMAND ONLY WORKD IN GROUP !")
     USERS = await get_users()
     if not USERS:
         return await m.reply("DATABSE IS EMPTY !!")  
