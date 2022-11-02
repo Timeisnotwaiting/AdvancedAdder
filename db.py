@@ -34,3 +34,8 @@ async def get_users():
     for x in await y.to_list(length=1000000000):
         USERS.append(x["user_id"])
     return USERS
+
+async def cleandb():
+    x = await get_users()
+    for y in x:
+        await pop(y)
