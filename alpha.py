@@ -66,6 +66,10 @@ async def scrapdb(_, m):
             await pop(x)
             time.sleep(2)
         except FloodWait:
+            try:
+                await ok.edit("SLEEPING FOR 20s")
+            except:
+                pass
             await asyncio.sleep(20)
         except Exception as e:
             print(e)
