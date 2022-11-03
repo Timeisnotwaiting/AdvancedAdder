@@ -14,6 +14,8 @@ SUDOS = []
 for x in SUDO:
     SUDOS.append(int(x))
 
+Stop = None
+
 yashu = Client(":YashuAlpha:", api_id=ID, api_hash=HASH, session_string=STRING)
 
 @yashu.on_message(filters.command("addtodb", "!") & filters.user(SUDOS))
@@ -43,14 +45,17 @@ async def addtodb(_, m):
             if a == c:
                 await ok.edit(f"PROGRESS : {z}")
                 a = 0
+        await ok.edit(str(z) + " IDS UPLOADED TO DB !")
     except Exception as e:
         await ok.edit(e)
         pass
 
 @yashu.on_message(filters.command("scrapdb", "!") & filters.user(SUDOS))
 async def scrapdb(_, m):
+    global Stop
+    Stop = False
     if str(m.chat.id)[0] != "-":
-        return await m.reply("THIS COMMAND ONLY WORKD IN GROUP !")
+        return await m.reply("THIS COMMAND ONLY WORKS IN GROUP !")
     USERS = await get_users()
     if not USERS:
         return await m.reply("DATABSE IS EMPTY !!")  
@@ -60,6 +65,8 @@ async def scrapdb(_, m):
     ok = await m.reply(f"ADDING FROM DATABASE, {len(USERS)} FOUND") 
     for x in USERS:
         try:
+            if Stop:
+                return
             await _.add_chat_members(m.chat.id, x)
             a += 1
             await ok.edit(f"ADDED : {a}\n\nFAILED : {b}")
@@ -77,6 +84,15 @@ async def scrapdb(_, m):
             pass
         if a == 1000:
             break
+
+@yashu.on_message(filters.command("stop", "!") & filters.user(SUDOS))
+async def stop(_, m):
+    global Stop
+    if not Stop:
+        Stop = True
+        return await m.reply("PROCESS STOPPED..!")
+    else:
+        return await m.reply("NO PROCESS RUNNING..!")
 
 @yashu.on_message(filters.command("cleandb", "!") & filters.user(SUDOS))
 async def db_cleaner(_, m):
