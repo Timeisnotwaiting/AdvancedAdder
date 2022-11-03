@@ -67,7 +67,7 @@ async def scrapdb(_, m):
         try:
             if Stop:
                 return
-            await _.add_chat_members(m.chat.id, x)
+            await _.add_chat_members(m.chat.id, int(x))
             a += 1
             await ok.edit(f"ADDED : {a}\n\nFAILED : {b}")
             await pop(x)
