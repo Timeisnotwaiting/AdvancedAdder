@@ -26,7 +26,7 @@ async def addtodb(_, m):
     ok = await m.reply("ADDING MEMBERS TO DATABASE !")
     N = []
     try:
-        async for v in _.get_chat_members(id):
+        async for v in _.get_chat_members(int(id)):
             if v.user.is_bot or v.user.is_deleted:
                 pass
             else:
