@@ -78,6 +78,10 @@ async def scrapdb(_, m):
             except:
                 pass
             await asyncio.sleep(20)
+        except BadRequest as e:
+            print(e)
+            await ok.edit("ID GOT LIMITED !")
+            return
         except Exception as e:
             print(e)
             b += 1
