@@ -3,7 +3,7 @@ from db import add, pop, get_users, cleandb
 import os
 import time
 import asyncio
-from pyrogram.errors import FloodWait
+from pyrogram.errors import FloodWait, BadRequest
 
 ID = os.environ["API_ID"]
 HASH = os.environ["API_HASH"]
