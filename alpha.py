@@ -113,12 +113,12 @@ async def joinleave(_, m):
     try:
         if m.text.split()[0][1].lower() == "j":
             await _.join_chat(entity)
-            ok = return await m.reply("JOINED !!")
+            return await m.reply("JOINED !!")
         else:
             await _.leave_chat(entity)
-            ok = return await m.reply("LEFT CHAT !!")
+            return await m.reply("LEFT CHAT !!")
     except Exception as e:
-        await ok.edit(e)
+        await m.reply(e)
 
 yashu.start()
 print("YashuAlpha Op")
