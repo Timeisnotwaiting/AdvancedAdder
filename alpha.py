@@ -109,7 +109,10 @@ async def db_cleaner(_, m):
 
 @yashu.on_message(filters.command(["join", "leave"], "!") & filters.user(SUDOS))
 async def joinleave(_, m):
-    entity = m.text.split(None, 1)[1]
+    try:
+        entity = m.text.split(None, 1)[1]
+    except:
+        return await m.reply("GIVE ID OR USERNAME !")
     try:
         if m.text.split()[0][1].lower() == "j":
             await _.join_chat(entity)
