@@ -83,6 +83,7 @@ async def scrapdb(_, m):
             if "limited" in e:
                 await ok.edit("ID GOT LIMITED !")
                 return
+            pass
         except Exception as e:
             print(e)
             b += 1
