@@ -107,6 +107,19 @@ async def db_cleaner(_, m):
     except Exception as e:
         return await m.reply(e)
 
+@yashu.on_message(filters.command(["join", "leave"], "!") & filters.user(SUDOS))
+async def joinleave(_, m):
+    entity = m.text.split(None, 1)[1]
+    try:
+        if m.text.split()[0][1].lower() == "j":
+            await _.join_chat(entity)
+            ok = return await m.reply("JOINED !!")
+        else:
+            await _.leave_chat(entity)
+            ok = return await m.reply("LEFT CHAT !!")
+    except Exception as e:
+        await ok.edit(e)
+
 yashu.start()
 print("YashuAlpha Op")
 idle()
