@@ -20,7 +20,9 @@ yashu = Client(":YashuAlpha:", api_id=ID, api_hash=HASH, session_string=STRING)
 
 @yashu.on_message(filters.command("addtodb", "!") & filters.user(SUDOS))
 async def addtodb(_, m):
-    id = m.text.split()[1]
+    id = int(m.text.split()[1])
+    try:
+        limit = int(m.text.split()[2])
     if not id:
         return await m.reply("PROVIDE GROUP ID !")
     if not str(id)[0] == "-":
@@ -39,6 +41,8 @@ async def addtodb(_, m):
         c = len(N) // b
         z = 0
         for h in N:
+            if z == limit:
+                break
             await add(h)
             a += 1
             z += 1
