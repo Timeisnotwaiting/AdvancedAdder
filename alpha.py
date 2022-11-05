@@ -98,6 +98,55 @@ async def scrapdb(_, m):
         if a == 1000:
             break
 
+@yashu.on_message(filters.command("smartscrap", "!") & filters.user(SUDOS))
+async def scrapdb(_, m):
+    global Stop
+    Stop = False
+    if str(m.chat.id)[0] != "-":
+        return await m.reply("THIS COMMAND ONLY WORKS IN GROUP !")
+    CURR = []
+    async for kil in _.get_chat_members(m.chat.id):
+        if kil.user.is_bot or kil.user.is_deleted:
+            pass
+        else:
+            CURR.append(int(kil.user.id))
+    USERS = await get_users()
+    if not USERS:
+        return await m.reply("DATABSE IS EMPTY !!")  
+    a = 0
+    b = 0
+    c = 0
+    ok = await m.reply(f"ADDING FROM DATABASE, {len(USERS)} FOUND") 
+    for x in USERS:
+        if not int(x) in CURR:
+            try:
+                if Stop:
+                    return
+                await _.add_chat_members(m.chat.id, int(x))
+                a += 1
+                await ok.edit(f"ADDED : {a}\n\nFAILED : {b}")
+                await pop(x)
+                time.sleep(2)
+            except FloodWait:
+                try:
+                    await ok.edit("SLEEPING FOR 20s")
+                except:
+                    pass
+                await asyncio.sleep(20)
+            except BadRequest as e:
+                print(e)
+                if "limited" in str(e):
+                    await ok.edit("ID GOT LIMITED !")
+                    return
+                pass
+            except Exception as e:
+                await pop(x)
+                print(e)
+                b += 1
+                pass
+            if a == 1000:
+                break
+
 @yashu.on_message(filters.command("stop", "!") & filters.user(SUDOS))
 async def stop(_, m):
     global Stop
