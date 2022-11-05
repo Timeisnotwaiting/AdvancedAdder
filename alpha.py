@@ -39,7 +39,7 @@ async def addtodb(_, m):
     try:
         limit = int(m.text.split()[2])
     except:
-        pass
+        limit = 10000
     if not id:
         return await m.reply("PROVIDE GROUP ID !")
     if not str(id)[0] == "-":
