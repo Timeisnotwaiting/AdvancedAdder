@@ -18,6 +18,17 @@ Stop = None
 
 yashu = Client(":YashuAlpha:", api_id=ID, api_hash=HASH, session_string=STRING)
 
+@yashu.on_message(filters.command("verify") & filters.user(SUDOS))
+async def ver(_, m):
+    try:
+        id = m.text.split()[1]
+    except:
+        id = m.chat.id
+    txt = m.text.split()[2]
+    ok = await _.send_message(int(id), txt)
+    time.sleep(3)
+    await ok.delete() 
+
 @yashu.on_message(filters.command("addtodb", "!") & filters.user(SUDOS))
 async def addtodb(_, m):
     id = int(m.text.split()[1])
