@@ -91,6 +91,7 @@ async def scrapdb(_, m):
                 return
             pass
         except Exception as e:
+            await pop(x)
             print(e)
             b += 1
             pass
