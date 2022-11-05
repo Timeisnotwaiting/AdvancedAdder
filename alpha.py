@@ -24,10 +24,14 @@ async def ver(_, m):
         id = m.text.split()[1]
     except:
         id = m.chat.id
-    txt = m.text.split()[2]
-    ok = await _.send_message(int(id), txt)
-    time.sleep(3)
-    await ok.delete() 
+    try:
+        txt = m.text.split()[2]
+        ok = await _.send_message(int(id), txt)
+        time.sleep(3)
+        await ok.delete() 
+        await m.reply("VERIFIED !")
+    except Exception as e:
+        await m.reply(e)
 
 @yashu.on_message(filters.command("addtodb", "!") & filters.user(SUDOS))
 async def addtodb(_, m):
