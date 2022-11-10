@@ -196,6 +196,11 @@ async def joinleave(_, m):
     except Exception as e:
         await m.reply(e)
 
+@yashu.on_message(filters.command("checkdb", "!") & filters.user(SUDOS))
+async def check(_, m):
+    x = await check_db()
+    await m.reply(f"{x}")
+
 yashu.start()
 print("YashuAlpha Op")
 idle()
