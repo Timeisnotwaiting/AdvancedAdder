@@ -1,5 +1,5 @@
 from pyrogram import Client, filters, idle
-from db import add, pop, get_users, cleandb
+from db import add, pop, get_users, cleandb, check_db
 import os
 import time
 import asyncio
@@ -152,6 +152,7 @@ async def scrapdb(_, m):
                 print(e)
                 if "limited" in str(e):
                     await ok.edit("ID GOT LIMITED !")
+                    await m.reply("ID GOT LIMITED !")
                     return
                 pass
             except Exception as e:
