@@ -39,3 +39,7 @@ async def cleandb():
     x = await get_users()
     for y in x:
         await pop(y)
+
+async def check_db():
+    x = await get_users()
+    return len(x)
