@@ -5,10 +5,13 @@ import time
 import asyncio
 from pyrogram.errors import FloodWait, BadRequest
 
-ID = os.environ["API_ID"]
-HASH = os.environ["API_HASH"]
-STRING = os.environ["STRING_SESSION"]
-SUDO = os.environ["SUDO_USERS"].split()
+try:
+    ID = os.environ["API_ID"]
+    HASH = os.environ["API_HASH"]
+    STRING = os.environ["STRING_SESSION"]
+    SUDO = os.environ["SUDO_USERS"].split()
+except:
+    from yashu import *
 
 SUDOS = []
 for x in SUDO:
