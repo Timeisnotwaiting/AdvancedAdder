@@ -1,7 +1,10 @@
 import os
 from motor.motor_asyncio import AsyncIOMotorClient as K
 
-MONGO = os.environ["MONGO_DB_URL"]
+try:
+    MONGO = os.environ["MONGO_DB_URL"]
+except:
+    from yashu import MONGO
 
 x = K(MONGO)
 db = x.ADV
