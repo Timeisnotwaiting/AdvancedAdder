@@ -202,6 +202,51 @@ async def check(_, m):
     x = await check_db()
     await m.reply(f"{x}")
 
+@yashu.on_message(filters.command("cadd", "!") & filters.user(SUDOS))
+async def cadde(_, m):
+    global Stop
+    Stop = False
+    try:
+        c_id = int(m.text.split()[1])
+    except:
+        return await m.reply("GIVE CHANNEL ID 🙂")
+    USERS = await get_users()
+    if not USERS:
+        return await m.reply("DATABSE IS EMPTY !!")  
+    a = 0
+    b = 0
+    c = 0
+    ok = await m.reply(f"ADDING FROM DATABASE, {len(USERS)} FOUND") 
+    for x in USERS:
+        try:
+            if Stop:
+                return
+            await _.add_chat_members(c_id, int(x))
+            a += 1
+            await ok.edit(f"ADDED : {a}\n\nFAILED : {b}")
+            await pop(x)
+            time.sleep(2)
+        except FloodWait:
+            try:
+                await ok.edit("SLEEPING FOR 20s")
+            except:
+                pass
+            await asyncio.sleep(20)
+        except BadRequest as e:
+            print(e)
+            if "limited" in str(e):
+                await ok.edit("ID GOT LIMITED !")
+                return
+            pass
+        except Exception as e:
+            await pop(x)
+            print(e)
+            b += 1
+            pass
+        if a == 1000:
+            break
+
+
 yashu.start()
 print("YashuAlpha Op")
 idle()
