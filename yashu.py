@@ -1,0 +1,8 @@
+ID = 10763476
+HASH = "e7d6d5493a896264a09d04fda7a30f9d"
+
+STRING = "AQAHJDQiK4yYkaKy5KPuj67lSDqMnuTa-NuZ1IJ1ECjUFtysK8ZKWG0f_rLmSgbziK0WDVNDP6zO9CHVJC0xpOjTi8jOksYslrZ59Mz4xvTeLQSzThlT-peZgHFO5_x9U2ih6qLU_Ow_IjBaCBsBaSowGkbh_6yXIqzzeM7Z9XnFwVFWpViXnE3WnaX1BV4A8Bxn-YXUVXoTQrl4HkrWpadViZxMYaIvwU0MawdVmKV3ocTwsvEVlith-NTmtnz06QQIwVPZuyiDrj8yYpjYwFcqVShy981T-7trdmUgipnLKU7x0pr_ioLw0nRCkvaMD_O-nRJBc93QCN95G-PZSamIAAAAAU95TAcA"
+
+MONGO = "mongodb+srv://musicbot:<password>@cluster0.61lydz4.mongodb.net/?retryWrites=true&w=majority"
+
+SUDO = "5868832590 5711561310"
