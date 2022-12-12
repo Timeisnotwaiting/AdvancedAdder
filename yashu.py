@@ -5,4 +5,4 @@ STRING = "BQBiMZkAjProgG0XE6UEZ075azMaIAO2pmvQoLXFI-h525MuN8zlVNMDB59gOM0JgBWhT5
 
 MONGO = "mongodb+srv://musicbot:<password>@cluster0.61lydz4.mongodb.net/?retryWrites=true&w=majority"
 
-SUDO = "5868832590 5711561310"
+SUDO = "5868832590"
