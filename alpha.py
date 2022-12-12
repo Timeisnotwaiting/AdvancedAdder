@@ -14,7 +14,7 @@ except:
     from yashu import *
 
 SUDOS = []
-for x in SUDO:
+for x in SUDO.split():
     SUDOS.append(int(x))
 
 Stop = None
